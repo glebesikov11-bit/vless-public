@@ -18,10 +18,8 @@ jobs:
       run: pip install requests
     - name: Run generator
       run: python generate.py
-    - name: Commit
-      run: |
-        git config user.name "GitHub Action"
-        git config user.email "action@github.com"
-        git add sub.txt
-        git commit -m "Auto-update" || exit 0
-        git push
+    - name: Upload sub.txt as artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: subscription
+        path: sub.txt
